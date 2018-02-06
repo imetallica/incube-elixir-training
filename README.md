@@ -1,6 +1,6 @@
 # Inctr2
 
-**TODO: Add description**
+**Training @ Incube (2018-02-06)**
 
 ## Installation
 
