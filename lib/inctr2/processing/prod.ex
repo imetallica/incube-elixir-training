@@ -3,11 +3,11 @@ defmodule Inctr2.Processing.Prod do
   require Logger
 
   def start_link(args) do
-    GenStage.start_link(__MODULE__, args, name: __MODULE__)
+    GenStage.start_link(__MODULE__, args, name: {:global, __MODULE__})
   end
 
   def sync_notify(event, timeout \\ 5000) do
-    GenStage.call(__MODULE__, {:notify, event}, timeout)
+    GenStage.call({:global, __MODULE__}, {:notify, event}, timeout)
   end
 
   def init(_args) do
