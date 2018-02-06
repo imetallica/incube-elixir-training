@@ -21,8 +21,8 @@ defmodule Inctr2.Yolo1 do
   end
 
   def handle_call(:pop, _from, state) do
-    Logger.debug("#{inspect(__MODULE__)}: Current state: #{inspect state}")
-    
+    Logger.debug("#{inspect(__MODULE__)}: Current state: #{inspect(state)}")
+
     if Enum.empty?(state) do
       {:reply, nil, state}
     else

@@ -10,7 +10,12 @@ defmodule Inctr2 do
     children = [
       {Inctr2.Sup, [:yolo]},
       {Inctr2.Pool.Handler, []},
-      {Inctr2.Processing.Prod, []}
+      {Inctr2.Processing.Prod, []},
+      Supervisor.child_spec({Inctr2.Processing.Con, []}, id: PCon1),
+      Supervisor.child_spec({Inctr2.Processing.Con, []}, id: PCon2),
+      Supervisor.child_spec({Inctr2.Processing.Con, []}, id: PCon3),
+      Supervisor.child_spec({Inctr2.Processing.Con, []}, id: PCon4),
+      Supervisor.child_spec({Inctr2.Processing.Con, []}, id: PCon5),
     ]
 
     # Top supervisor

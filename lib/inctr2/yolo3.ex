@@ -7,7 +7,7 @@ defmodule Inctr2.Yolo3 do
   end
 
   def init(args) do
-    Logger.debug("#{inspect __MODULE__}: #{inspect args}")
+    Logger.debug("#{inspect(__MODULE__)}: #{inspect(args)}")
 
     {:ok, %{}}
   end

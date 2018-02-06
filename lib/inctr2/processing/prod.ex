@@ -11,16 +11,18 @@ defmodule Inctr2.Processing.Prod do
   end
 
   def init(_args) do
-    Logger.debug("#{inspect __MODULE__}")
+    Logger.debug("#{inspect(__MODULE__)}")
     # BroadcastDispatcher, PartitionDispatcher, DemandDispatcher
-    {:producer, :ok, dispatcher: GenStage.BroadcastDispatcher}
+    {:producer, :ok, dispatcher: GenStage.DemandDispatcher}
   end
 
   def handle_call({:notify, event}, _from, state) do
-    {:reply, :ok, [event], state} # Dispatch immediately
+    # Dispatch immediately
+    {:reply, :ok, [event], state}
   end
 
   def handle_demand(_demand, state) do
-    {:noreply, [], state} # We don't care about the demand
+    # We don't care about the demand
+    {:noreply, [], state}
   end
 end

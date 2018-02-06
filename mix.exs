@@ -13,8 +13,7 @@ defmodule Inctr2.MixProject do
 
   # Run "mix help compile.app" to learn about applications.
   def application do
-    [mod: {Inctr2, []},
-    extra_applications: [:logger]]
+    [mod: {Inctr2, []}, extra_applications: [:logger]]
   end
 
   # Run "mix help deps" to learn about dependencies.

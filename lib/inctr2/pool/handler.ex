@@ -4,22 +4,23 @@ defmodule Inctr2.Pool.Handler do
   alias Inctr2.Pool.Worker
 
   def add_children(pool_size \\ 10) do
-    Enum.map(1..pool_size, fn _ -> 
+    Enum.map(1..pool_size, fn _ ->
       DynamicSupervisor.start_child(__MODULE__, {Worker, []})
     end)
   end
 
   def sleepy_echo(time) do
     children = DynamicSupervisor.which_children(__MODULE__)
+
     if Enum.empty?(children) do
       add_children()
 
       sleepy_echo(time)
     else
-      [{_, pid, _, _}] = 
-      children
-      |> Enum.shuffle() 
-      |> Enum.take(1)
+      [{_, pid, _, _}] =
+        children
+        |> Enum.shuffle()
+        |> Enum.take(1)
 
       Worker.echo_sleep(pid, time)
     end

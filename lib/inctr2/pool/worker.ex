@@ -1,7 +1,7 @@
 defmodule Inctr2.Pool.Worker do
   use GenServer
   require Logger
-  
+
   def echo_sleep(pid, time) do
     GenServer.call(pid, {:echo, time})
   end
@@ -17,10 +17,14 @@ defmodule Inctr2.Pool.Worker do
   end
 
   def handle_call({:echo, time}, _from, state) do
-    Logger.debug("#{inspect(__MODULE__)} | #{inspect(self())}: Sleeping for: #{inspect time}. Current state: #{inspect state}")
+    Logger.debug(
+      "#{inspect(__MODULE__)} | #{inspect(self())}: Sleeping for: #{inspect(time)}. Current state: #{
+        inspect(state)
+      }"
+    )
 
     Process.sleep(time)
-    
+
     {:reply, time, state}
   end
 
